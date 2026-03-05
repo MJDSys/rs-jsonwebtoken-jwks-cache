@@ -1,6 +1,6 @@
 [package]
 name = "jsonwebtoken-jwks-cache"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2024"
 authors = ["Kostas Petrikas"]
 license = "MIT"
@@ -11,13 +11,17 @@ repository = "https://github.com/expl/rs-jsonwebtoken-jwks-cache"
 keywords = ["jwt", "api", "token", "jwk"]
 rust-version = "1.85.0"
 
+[features]
+default = ["reqwest/default-tls"]
+native-tls = ["reqwest/native-tls"]
+
 [dependencies]
 jsonwebtoken = { version = "10", features = ["rust_crypto"] }
 tokio = { version = "1.0", default-features = false }
 http = "1"
 url = "2"
-reqwest = { version = "0.12", default-features = false, features = ["rustls-tls-native-roots", "brotli", "json"] }
-http-cache-semantics = { version = "2", default-features = false, features = ["reqwest"]}
+reqwest = { version = "0.13", default-features = false, features = ["brotli", "json"] }
+http-cache-semantics = { version = "3", default-features = false, features = ["reqwest"]}
 spin = "0.10"
 thiserror = "2.0"
 log = "0.4"
